@@ -1,0 +1,71 @@
+// User Pages
+
+.app-logo {
+  height: $logo-height;
+  width: $logo-width;
+  background: url('./assets/images/logo-inverse.png');
+  background-repeat: no-repeat;
+}
+
+.app-logo-inverse {
+  height: $logo-height;
+  width: $logo-width;
+  background: url('./assets/images/logo.png');
+  background-repeat: no-repeat;
+}
+
+.app-login-box {
+  .app-logo {
+    margin-bottom: $layout-spacer-lg;
+  }
+
+  h4 {
+    margin-bottom: $layout-spacer-x;
+    font-weight: normal;
+
+    div {
+      opacity: .6;
+    }
+
+    span {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+.CustomblackBorder {
+   border : 2px solid $black
+}
+
+
+#sidecolor {
+	height: 50px;
+	width: 15px;
+}
+
+#headcolor {
+	display: flex;
+  height: 10px;
+  width: 50px;
+  margin-top: -50px;
+}
+
+#agentcolor{
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.hide{
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .mobilehide {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+
+
