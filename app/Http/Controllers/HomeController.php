@@ -12,8 +12,5 @@ class HomeController extends Controller
     }
 
 
-    function test(Request $request)
-    {
-        return inertia('Test');
-    }
+    
 }

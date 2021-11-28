@@ -4,7 +4,7 @@
       <div class="d-flex h-100 justify-content-center align-items-center">
         <b-col md="6" class="mx-auto app-login-box" >
           <div class="text-center">
-            <img src="logo/logo-black.png" style="width:100px;"/>
+            <img src="/logo/logo-black.png" style="width:100px;"/>
           </div>
           <!-- <div class="app-logo-inverse mx-auto mb-3" /> -->
           <b-form @submit.prevent="submit">

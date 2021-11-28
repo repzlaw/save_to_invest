@@ -15,9 +15,10 @@ import VueHtmlToPaper from 'vue-html-to-paper';
 import VueCookies from 'vue-cookies';
 
 import VueCountdownTimer from 'vuejs-countdown-timer';
+import VueElementLoading from "vue-element-loading";
+
 Vue.use(VueCountdownTimer);
-
-
+Vue.component("VueElementLoading", VueElementLoading);
 
 Vue.use(plugin)
 Vue.use(VueMeta)

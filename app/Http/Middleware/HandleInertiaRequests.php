@@ -43,7 +43,7 @@ class HandleInertiaRequests extends Middleware
 
             // Lazily
             'user' => fn () => $request->user()
-                ? $request->user()->only('id', 'name', 'phone', 'image', 'email')
+                ? $request->user()->only('id', 'name', 'phone', 'image', 'email','email_verified_at')
                 : null,
             'flash' => [
                 'message' => fn () => $request->session()->get('message'),

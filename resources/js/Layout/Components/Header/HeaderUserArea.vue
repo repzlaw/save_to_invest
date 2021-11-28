@@ -10,6 +10,7 @@
               variant="link"
               no-caret
               right
+              ref="dropdown"
             >
               <span slot="button-content">
                 <div class="icon-wrapper icon-wrapper-alt rounded-circle">
@@ -53,9 +54,10 @@
               <div class="scroll-area-xs" style="height: 150px">
                 <VuePerfectScrollbar class="scrollbar-container" v-once>
                   <ul class="nav flex-column">
-                    <li class="nav-item-header nav-item">Activity</li>
+                    <!-- <li class="nav-item-header nav-item">Activity</li> -->
                     <li class="nav-item">
-                      <inertia-link class="nav-link" :href="route('profile')"
+                      <inertia-link class="nav-link" :href="route('profile.index')"
+                        @click="closeDropdown"
                         >My Profile</inertia-link
                       >
                     </li>
@@ -118,10 +120,12 @@
                   <inertia-link
                     :href="route('logout')"
                     method="post"
-                    class="btn-wide btn btn-primary btn-sm"
+                    class="mb-2 mr-2 btn-icon btn-shadow btn-dashed btn btn-outline-danger btn-sm"
                     as="button"
                     type="button"
-                    >Logout</inertia-link
+                    >
+                      <i class="lnr-exit r-2"></i>
+                    Log out</inertia-link
                   >
                 </li>
               </ul>
@@ -840,6 +844,10 @@ export default {
     showDrawerSection: false,
   }),
 
-  methods: {},
+  methods: {
+    closeDropdown() {
+      this.$refs.dropdown.visible = false;
+    },
+  },
 };
 </script>

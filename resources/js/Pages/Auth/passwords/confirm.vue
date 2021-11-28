@@ -3,7 +3,10 @@
     <div class="h-100 bg-plum-plate bg-animation">
       <div class="d-flex h-100 justify-content-center align-items-center">
         <b-col md="8" class="mx-auto app-login-box">
-          <div class="app-logo-inverse mx-auto mb-3" />
+          <!-- <div class="app-logo-inverse mx-auto mb-3" /> -->
+          <div class="text-center">
+            <img src="/logo/logo-black.png" style="width:100px;"/>
+          </div>
           <b-form @submit.prevent="submit">
             <div class="modal-dialog w-100 mx-auto">
               <div class="modal-content">
