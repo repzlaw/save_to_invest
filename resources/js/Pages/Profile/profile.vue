@@ -8,11 +8,12 @@
                         <div class="dropdown-menu-header-inner bg-info">
                             <div class="menu-header-image" style="background-image: url('assets/images/dropdown-header/abstract1.jpg')"></div>
                             <div class="menu-header-content btn-pane-right">
-                                <div class="avatar-icon-wrapper mr-2 avatar-icon-xl">
-                                    <div class="avatar-icon btn-hover-shine mr-3" style="cursor:pointer; ">
+                                <div class="avatar-icon-wrapper mr-2 avatar-icon-xl" @click="$bvModal.show('edit-image')">
+                                    <div class="avatar-icon btn-hover-shine mr-3 profile-pic" style="cursor:pointer; ">
                                         <img v-if="user"
                                         :src="'storage/images/profile_pic/' + user.image"
                                         alt="pic">
+                                        <div class="pic-edit"><i class="lnr-camera btn-icon-wrapper text-light" ></i></div>
                                     </div>
                                 </div>
                                 <div>
@@ -72,13 +73,16 @@
                         </li>
                         <hr>
 
-                        <li class="list-group-item btn-transition btn btn-outline-link" style="cursor:pointer">
+                            <li class="list-group-item btn-transition btn btn-outline-link" style="cursor:pointer" @click="activityLog">
+                        <!-- <inertia-link :href="'/activity-log/' + $page.props.user.id" 
+                            class="list-group-item btn-transition btn btn-outline-link hover:text-primary" style="cursor:pointer; color:black;"
+                            active-link="text-primary"> -->
                             <div class="widget-content p-0">
                                 <div class="widget-content-wrapper">
-                                    <div class="widget-content-left ">
+                                    <div class="widget-content-left">
                                         <div class="icon-wrapper m-0">
                                             <div class="progress-circle-wrapper">
-                                                <i class="lnr-thumbs-up btn-icon-wrapper" ></i>
+                                                <i class="lnr-thumbs-up btn-icon-wrapper"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +91,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        <!-- </inertia-link> -->
+                            </li>
+                        
                         <hr>
 
                         <li class="list-group-item btn-transition btn btn-outline-link" @click="$bvModal.show('edit-bank')"
@@ -109,7 +115,7 @@
                         </li>
                         <hr>
 
-                        <li class="list-group-item btn-transition btn btn-outline-link" style="cursor:pointer" >
+                        <li class="list-group-item btn-transition btn btn-outline-link" style="cursor:pointer" v-b-toggle="'collapse-2'" >
                             <div class="widget-content p-0">
                                 <div class="widget-content-wrapper">
                                     <div class="widget-content-left ">
@@ -124,21 +130,31 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Element to collapse -->
+                            <b-collapse id="collapse-2">
+                                <b-card>
+                                    <div>
+                                        <p><strong><span class="mr-1 lnr lnr-envelope"></span> save2invest@lifecard.com</strong></p>
+                                        <p><strong><span class="mr-1 lnr lnr-phone-handset"></span> +234 813 759 6257</strong></p>
+                                        
+                                    </div>
+                                </b-card>
+                            </b-collapse>
                         </li>
                         <hr>
                         
                     </ul>
-                <div class="text-center d-block card-footer">
-                            <inertia-link
-                                :href="route('logout')"
-                                method="post"
-                                class="btn-icon btn-shadow btn-dashed btn btn-outline-danger btn-sm"
-                                as="button"
-                                type="button"
-                                >
-                                <i class="lnr-exit r-2"></i>
-                                Log out
-                            </inertia-link>
+                    <div class="text-center d-block card-footer">
+                        <inertia-link
+                            :href="route('logout')"
+                            method="post"
+                            class="btn-icon btn-shadow btn-dashed btn btn-outline-danger btn-sm"
+                            as="button"
+                            type="button"
+                            >
+                            <i class="lnr-exit r-2"></i>
+                            Log out
+                        </inertia-link>
                     </div>
                 </div>
             </div>
@@ -211,101 +227,136 @@
             <EditBank :my_modal="this.$bvModal" :user="user" />
         </b-modal>
         <!-- End bank modal -->
+
+        <!-- Edit image modal  -->
+        <b-modal id="edit-image"  hide-footer title="Update profile picture" >
+            <EditImage :my_modal="this.$bvModal" :user_id="user.id" @update-user="getUser" />
+        </b-modal>
+        <!-- End image modal -->
     </div>
 </template>
 
 <script>
+import { Inertia } from '@inertiajs/inertia';
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+import VueCircle from 'vue2-circle-progress'
+import EditProfile from './editProfile'
+import EditBank from './editBankDetails'
+import EditImage from './imageUpload'
 
-    import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-    import VueCircle from 'vue2-circle-progress'
-    import EditProfile from './editProfile'
-    import EditBank from './editBankDetails'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {
+    faArrowRight,
+    faArrowLeft,
+    faAngleUp,
+    faDotCircle,
+    faAngleDown,
+} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
-    import {library} from '@fortawesome/fontawesome-svg-core'
-    import {
-        faArrowRight,
-        faArrowLeft,
-        faAngleUp,
-        faDotCircle,
-        faAngleDown,
-    } from '@fortawesome/free-solid-svg-icons'
-    import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+library.add(
+    faArrowRight,
+    faAngleUp,
+    faArrowLeft,
+    faDotCircle,
+    faAngleDown,
+);
 
-    library.add(
-        faArrowRight,
-        faAngleUp,
-        faArrowLeft,
-        faDotCircle,
-        faAngleDown,
-    );
+export default {
+    components: {
+        'font-awesome-icon': FontAwesomeIcon,
+        VuePerfectScrollbar,
+        VueCircle,
+        EditProfile,
+        EditBank,
+        EditImage,
+    },
+    props: { 
+        // user: Object,
+    },
+    data() {
+        return{
+        icon: 'pe-7s-science icon-gradient bg-happy-itmeo',
+        loading:false,
+        user:{},
 
-    export default {
-        components: {
-            'font-awesome-icon': FontAwesomeIcon,
-            VuePerfectScrollbar,
-            VueCircle,
-            EditProfile,
-            EditBank,
+    }},
+
+    methods: {
+        //get user 
+        getUser() {
+            this.loading = true;
+        axios
+            .post(this.route("profile.get-user"))
+            .then((res) => {
+            this.user = res.data;
+            this.loading = false;
+
+            })
+            .catch((err) => {
+            //   swal("Error", "unable to get data", "error");
+            // console.log("error");
+            });
         },
-        props: { 
-            // user: Object,
-        },
-        data() {
-            return{
-            icon: 'pe-7s-science icon-gradient bg-happy-itmeo',
-            loading:false,
-            user:{},
 
-        }},
-
-        methods: {
-            //get user 
-            getUser() {
-                this.loading = true;
+        //verify email
+        verifyEmail(){
+            this.loading= true;
             axios
-                .post(this.route("profile.get-user"))
-                .then((res) => {
-                this.user = res.data;
-                this.loading = false;
+            .post("/profile/verify-email")
+            .then(res =>{
+                this.loading= false;
+                this.$inertia.visit("/email/verify");
 
-                })
-                .catch((err) => {
-                //   swal("Error", "unable to get data", "error");
-                // console.log("error");
-                });
-            },
+            })
+            .catch((err) => {
+        // swal("Error", this.getMessage("fetchError", ["Staff"]), "error");
+            })
 
-            //verify email
-            verifyEmail(){
-                this.loading= true;
-                axios
-                .post("/profile/verify-email")
-                .then(res =>{
-                    this.loading= false;
-                    this.$inertia.visit("/email/verify");
-
-                })
-                .catch((err) => {
-          // swal("Error", this.getMessage("fetchError", ["Staff"]), "error");
-                })
-
-            },
         },
-        mounted(){
-            this.getUser();
-                // this.loading= true;
-            
-        }
+
+        //get user activity
+        activityLog(){
+            let user_id = this.user.id;
+            Inertia.get('/activity-log/'+user_id)
+        },
+    },
+    mounted(){
+        this.getUser();
+            // this.loading= true;
+        
     }
+}
 
 </script>
 <style scoped>
 li {
-    color: black;
+color: black;
 }
 hr {
-  margin-top: 0em !important;
-  margin-bottom: 0em !important;
-  border-width: 1px;
+margin-top: 0em !important;
+margin-bottom: 0em !important;
+border-width: 1px;
 }
+
+.profile-pic {
+position: relative;
+display: inline-block;
+}
+
+.profile-pic:hover .pic-edit {
+display: block;
+}
+
+.pic-edit {
+padding-top: 7px;	
+padding-right: 7px;
+position: absolute;
+right: 0;
+bottom: 0;
+font-size: 1.99em;
+display: none;
+}
+
+
 </style>

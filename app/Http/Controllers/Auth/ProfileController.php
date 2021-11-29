@@ -46,7 +46,43 @@ class ProfileController extends Controller
         }
         
         $user->update($request->validated());
-        
+        activity()->log('Updated profile details');
+
         return true;
+    }
+
+    // update image
+    public function updateImage(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'featured_image' => 'file|required|image|mimes:jpeg,jpg,png,svg|max:2048',
+            'user_id' => 'required',
+        ]);
+        if ($request->hasFile('featured_image')) {
+            //process image
+            $fileNameToStore = process_image($request->file('featured_image'));
+        // dd($fileNameToStore);
+
+            //store image
+            $path = $request->file('featured_image')->storeAs('public/images/profile_pic', $fileNameToStore);
+
+            //get old user image if exist
+            $user = User::where('id',$request->user_id)->first();
+            if ($user) {
+                $user_image = $user->file_path;
+                if ($user_image) {
+                    unlink(storage_path("app/public/images/profile_pic/".$user_image));
+                }
+            }
+
+            $update = $user->update([
+                'image'=>$fileNameToStore,
+            ]);
+            
+            activity()->log('Updated profile picture');
+    
+            return true;
+        }
     }
 }

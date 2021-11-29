@@ -72,6 +72,7 @@ class BankController extends Controller
                 $save->account_number = $request->account_number;
 
         $save->save();
+        activity()->log('Updated withdawal bank details');
 
         return true;
     }
