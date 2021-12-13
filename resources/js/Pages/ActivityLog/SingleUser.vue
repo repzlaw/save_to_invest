@@ -22,7 +22,9 @@
                     <!-- <VuePerfectScrollbar class="scrollbar-container"> -->
                         <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column" >
                             <div class="vertical-timeline-item vertical-timeline-element"  v-for="(activity,index) in activities.data" :key="index">
-                                <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-success"> </i></span>
+                                <div><span class="vertical-timeline-element-icon bounce-in">
+                                    <i class="badge badge-dot badge-dot-xl badge-success" :class="{'badge-success': index % 3 === 0, 'badge-alternate': index % 2 !== 0 }"></i>
+                                    </span>
                                     <div class="vertical-timeline-element-content bounce-in"><h6 class="timeline-title">
                                       <span class="text-success"  >
                                         <!-- <inertia-link style="width: 100% !important" :id="'user'+index"
@@ -36,7 +38,8 @@
                                                   triggers="hover focus"
                                                 ></b-popover> -->
                                         </span> {{activity.description}}</h6>
-                                        <p> <span class="text-success"> {{activity.my_updated_at}}</span></p><span class="vertical-timeline-element-date"></span></div>
+                                        <p> <span class="text-success"
+                                                :class="{'text-primary': index % 3 === 0, 'text-alternate': index % 2 !== 0 }"> {{activity.my_updated_at}}</span></p><span class="vertical-timeline-element-date"></span></div>
                                         <div v-if="activity.properties.length != 0">
                                           <button
                                               type="button"
@@ -53,7 +56,7 @@
                     <!-- </VuePerfectScrollbar> -->
                 <!-- </div> -->
             </div>
-          </div>               
+          </div>
         </div>
           <div v-if="activities.data == ''" class="alert alert-info text-center">
             <h5>No User Activity Logged</h5>
@@ -131,7 +134,7 @@ export default {
       this.current_activity = activity;
     },
     //function to get a user activity
-    getActivity(url = false) {  
+    getActivity(url = false) {
       this.loading = true;
       let uri = url ? url : this.route("activity-log.single.get", this.user_id);
       axios
@@ -139,7 +142,7 @@ export default {
         .then((res) => {
           this.activities = res.data;
             this.loading = false;
-              
+
         })
         .catch((err) => {
           swal("Error", this.getMessage("fetchError", ['Activities']), "error");

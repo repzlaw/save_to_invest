@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\GeneralFunctionsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NormalSavingsController;
+use App\Http\Controllers\SavingsController;
 use App\Http\Controllers\Setup\SetupController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,13 +55,26 @@ use Illuminate\Support\Facades\Route;
             Route::post('/update-image', [ProfileController::class, 'updateImage'])->name('edit.image');
             Route::post('/verify-email', [ProfileController::class,'verifyEmail'])->name('verify-email');
             Route::post('/get-user', [ProfileController::class,'getUser'])->name('get-user');
-            
+
             //change password
             Route::post('/change-password', [UserProfileController::class, 'changePassword'])->name('change-password')->middleware(['verified']);
             Route::get('/change-password/verify', [UserTwoFactorController::class, 'passwordTwoFaIndex'])->name('verify.change-password')->middleware(['verified']);
             Route::post('/password-token-verify', [UserTwoFactorController::class, 'verifyPassword'])->name('password-token.confirm')->middleware(['verified']);
             Route::get('/password-resend-token', [UserTwoFactorController::class, 'resendPasswordToken'])->name('token.resend')->middleware(['verified']);
-    });
+        });
 
-});
+        //saving routes
+        Route::prefix('/savings')->name('savings.')->group(function () {
+            Route::get('/', [SavingsController::class, 'index'])->name('all');
+            Route::post('/get-withdrawal-details', [savingController::class, 'getWithdrawalsaving'])->name('get-withdrawal-details');
+            Route::post('/save-withdrawal-saving-details', [savingController::class, 'saveWithdrawalsaving'])->name('save-withdrawal-saving-details');
+            Route::post('/resolve-account', [savingController::class, 'resolveAccount'])->name('resolve-account');
+
+            Route::prefix('/normal')->name('normal.')->group(function () {
+                Route::get('/', [NormalSavingsController::class, 'index'])->name('all');
+
+            });
+        });
+
+    });
 

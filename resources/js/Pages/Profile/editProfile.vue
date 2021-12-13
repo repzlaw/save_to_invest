@@ -40,7 +40,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Gender</span>
             </div>
-                <select 
+                <select
                       class="custom-select form-control" v-model="form.gender" required>
                       <option value="">-- select gender -- </option>
                       <option value="male">Male</option>
@@ -56,7 +56,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Marital Status</span>
             </div>
-                <select 
+                <select
                       class="custom-select form-control" v-model="form.marital_status" required>
                       <option value="">-- select marital status -- </option>
                       <option value="married">married</option>
@@ -72,7 +72,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Religion</span>
             </div>
-                <select 
+                <select
                       class="custom-select form-control" v-model="form.religion" required>
                       <option value="">-- select religion -- </option>
                       <option value="christianity">christianity</option>
@@ -148,7 +148,7 @@
         </div>
         <div class="d-block text-right card-footer">
           <button type="button" class="mr-2 btn btn-link btn-sm" @click="closeMe">Cancel</button>
-          <button type="submit" class="btn btn-primary btn-sm">Update</button>
+          <button type="submit" class="btn btn-hover-shine btn-primary btn-sm">Update</button>
         </div>
       </form>
 
@@ -166,7 +166,7 @@ export default {
   },
   components: {
   },
-  
+
   data: function () {
     return {
       states: {},
@@ -184,11 +184,12 @@ export default {
           this.loading = true;
           this.form.post('/profile/update')
             .then(() => {
-
+                this.$page.props.user.name = this.form.name;
                 this.$emit('update-user');
                 this.loading = false;
                 this.closeMe();
                 toastr["success"]('Profile updated successfully', "Success");
+
             })
             .catch((err) => {
                 this.loading = false;
@@ -204,8 +205,8 @@ export default {
                     })
                     .catch((err) => {
                         this.loading= false;
-                      
-                    })                  
+
+                    })
                 }
                  else if(err.response.data.message == 'incorrect password' || err.response.status == 422) {
                   toastr["error"]('Incorrect Password', "Password validation");
@@ -252,7 +253,7 @@ export default {
     // this.getAllState();
     // if(this.form.lgas != null){
     //   this.getLga(this.form.state_id)
-    // }    
+    // }
   },
 };
 </script>

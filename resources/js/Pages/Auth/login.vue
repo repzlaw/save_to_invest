@@ -9,7 +9,7 @@
           <!-- <div class="app-logo-inverse mx-auto mb-3" /> -->
           <b-form @submit.prevent="submit">
             <div class="modal-dialog w-100 mx-auto" >
-              <div class="modal-content" style="border-radius:5%">
+              <div class="modal-content" style="border-radius:1.25rem 1.25rem 1.25rem 0%; box-shadow:#000000 0px 0px 20px;">
                 <div class="modal-body" >
                   <div class="h5 modal-title text-center">
                     <h4 class="mt-2">

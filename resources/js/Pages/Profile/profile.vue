@@ -3,7 +3,7 @@
         <div class="row mt-4 container">
             <VueElementLoading :active="loading" spinner="line-wave" color="var(--primary)"/>
             <div class="col-md-6 col-lg-5 col-xl-5">
-                <div class="card-shadow-primary profile-responsive card-border mb-3 card">
+                <div class="card-shadow-primary profile-responsive card-border mb-3 card shadow-lg">
                     <div class="dropdown-menu-header">
                         <div class="dropdown-menu-header-inner bg-info">
                             <div class="menu-header-image" style="background-image: url('assets/images/dropdown-header/abstract1.jpg')"></div>
@@ -29,8 +29,8 @@
                         </div>
                     </div>
                     <ul class="list-group list-group-flush">
-                        
-                        <li class="list-group-item btn-transition btn btn-outline-link" 
+
+                        <li class="list-group-item btn-transition btn btn-outline-link"
                             v-if="!user.email_verified_at" style="cursor:pointer"
                             @click="verifyEmail"
                         >
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Verify your account
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                         <hr>
 
                             <li class="list-group-item btn-transition btn btn-outline-link" style="cursor:pointer" @click="activityLog">
-                        <!-- <inertia-link :href="'/activity-log/' + $page.props.user.id" 
+                        <!-- <inertia-link :href="'/activity-log/' + $page.props.user.id"
                             class="list-group-item btn-transition btn btn-outline-link hover:text-primary" style="cursor:pointer; color:black;"
                             active-link="text-primary"> -->
                             <div class="widget-content p-0">
@@ -93,7 +93,7 @@
                             </div>
                         <!-- </inertia-link> -->
                             </li>
-                        
+
                         <hr>
 
                         <li class="list-group-item btn-transition btn btn-outline-link" @click="$bvModal.show('edit-bank')"
@@ -134,15 +134,16 @@
                             <b-collapse id="collapse-2">
                                 <b-card>
                                     <div>
-                                        <p><strong><span class="mr-1 lnr lnr-envelope"></span> save2invest@lifecard.com</strong></p>
                                         <p><strong><span class="mr-1 lnr lnr-phone-handset"></span> +234 813 759 6257</strong></p>
-                                        
+                                        <p><strong><span class="mr-1 lnr lnr-envelope"></span> save2invest@lifecard.com</strong></p>
+                                        <p><strong><span class="lnr lnr-map-marker"></span> No. 2 Femi Okunnu Rd osapa London Jakunde, lagos Island, Lagos</strong></p>
+
                                     </div>
                                 </b-card>
                             </b-collapse>
                         </li>
                         <hr>
-                        
+
                     </ul>
                     <div class="text-center d-block card-footer">
                         <inertia-link
@@ -159,10 +160,10 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-6">
-                <div class="card-shadow-primary profile-responsive card-border mb-3 card">
-                    
+                <div class="card-shadow-primary profile-responsive card-border mb-3 card shadow-lg">
+
                     <ul class="list-group list-group-flush">
-                        
+
                         <li class="p-0 list-group-item">
                             <div class="grid-menu grid-menu-2col overflow-hidden">
                                 <div class="no-gutters row">
@@ -178,8 +179,8 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <button class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
-                                            <i class="lnr-map btn-icon-wrapper btn-icon-lg mb-3"> </i>
-                                            <h6> <strong>NGN 500,000</strong>  </h6>
+                                            <i class="fa fa-money btn-icon-wrapper btn-icon-lg mb-3"> </i>
+                                            <h6> <strong v-if="user"> {{Number(cash).toLocaleString() }}</strong>  </h6>
                                             <small>
                                             E Cash
                                             </small>
@@ -188,7 +189,7 @@
                                     <div class="col-sm-6">
                                         <button class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                             <i class="lnr-chart-bars btn-icon-wrapper btn-icon-lg mb-3"> </i>
-                                            <h6> <strong>1</strong>  </h6>
+                                            <h6> <strong>{{stat.score}}</strong>  </h6>
                                             <small>
                                             Credit Score
                                             </small>
@@ -196,10 +197,28 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <button class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
+                                            <i class="fa fa-share-alt btn-icon-wrapper btn-icon-lg mb-3"> </i>
+                                            <h6> <strong>{{stat.refer}}</strong>  </h6>
+                                            <small>
+                                            My Referrals
+                                            </small>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
                                             <i class="lnr-camera-video btn-icon-wrapper btn-icon-lg mb-3"> </i>
-                                            <h6> <strong>2</strong>  </h6>
+                                            <h6> <strong>{{stat.courses}}</strong>  </h6>
                                             <small>
                                             My Courses
+                                            </small>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button class="btn-icon-vertical btn-square btn-transition btn btn-outline-link">
+                                            <i class="lnr-map btn-icon-wrapper btn-icon-lg mb-3"> </i>
+                                            <h6> <strong>{{stat.train}}</strong>  </h6>
+                                            <small>
+                                            My Training
                                             </small>
                                         </button>
                                     </div>
@@ -221,7 +240,7 @@
             <EditProfile :my_modal="this.$bvModal" :user="user"  @update-user="getUser"/>
         </b-modal>
         <!-- End Profile modal -->
-        
+
         <!-- Edit bank modal  -->
         <b-modal id="edit-bank"  hide-footer title="Update withdrawal bank details">
             <EditBank :my_modal="this.$bvModal" :user="user" />
@@ -271,7 +290,7 @@ export default {
         EditBank,
         EditImage,
     },
-    props: { 
+    props: {
         // user: Object,
     },
     data() {
@@ -279,17 +298,20 @@ export default {
         icon: 'pe-7s-science icon-gradient bg-happy-itmeo',
         loading:false,
         user:{},
-
+        stat:{},
+        cash:0,
     }},
 
     methods: {
-        //get user 
+        //get user
         getUser() {
             this.loading = true;
         axios
             .post(this.route("profile.get-user"))
             .then((res) => {
-            this.user = res.data;
+            this.user = res.data.user;
+            this.stat = res.data;
+            this.cash = res.data.cash;
             this.loading = false;
 
             })
@@ -323,8 +345,6 @@ export default {
     },
     mounted(){
         this.getUser();
-            // this.loading= true;
-        
     }
 }
 
@@ -349,7 +369,7 @@ display: block;
 }
 
 .pic-edit {
-padding-top: 7px;	
+padding-top: 7px;
 padding-right: 7px;
 position: absolute;
 right: 0;

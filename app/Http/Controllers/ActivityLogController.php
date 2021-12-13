@@ -24,12 +24,12 @@ class ActivityLogController extends Controller
         $activity_log = Activity::join('users as u', 'u.id', '=', 'causer_id')
                                 ->select('activity_log.*', 'u.name')
                                 ->where('u.id', $user_id)
-                                ->orderBy('updated_at','desc')->paginate(10);
-        
+                                ->orderBy('updated_at','desc')->paginate(8);
+
         foreach ($activity_log as $value) {
            $value->my_updated_at = $value->updated_at->diffForHumans();
         }
-        
+
         return $activity_log;
     }
 }

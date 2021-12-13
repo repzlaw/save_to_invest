@@ -2,11 +2,16 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Course;
+use App\Models\CreditScore;
+use App\Models\ECash;
+use App\Models\Training;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Spatie\Activitylog\Models\Activity;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -24,7 +29,6 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
-            // 'mname' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -35,7 +39,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'phone' => $input['phone'],
             'role_id' => 2,
@@ -43,5 +47,36 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $credit_score = CreditScore::create([
+            'user_id' => $user->id,
+            'value' => 1,
+        ]);
+
+        $courses = Course::create([
+            'user_id' => $user->id,
+            'value' => 1,
+        ]);
+
+        $training = Training::create([
+            'user_id' => $user->id,
+            'value' => 1,
+        ]);
+
+        $ecash = ECash::create([
+            'user_id' => $user->id,
+            'value' => 500000,
+        ]);
+        // activity()->log('Created your save to invest account 👍🏾');
+
+        Activity::create([
+            'description'=> 'Created your save2invest account  👏',
+            'causer_id'=>$user->id,
+            'properties'=>[],
+            'log_name'=>'default',
+            'causer_type'=>'App\Models\User',
+        ]);
+
+        return $user;
     }
 }

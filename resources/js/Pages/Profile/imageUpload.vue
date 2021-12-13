@@ -31,13 +31,13 @@
                     <label class="custom-file-label" for="inputGroupFile01">{{fileName}}</label>
                 </div>
                 </div>
-                </div>            
+                </div>
             </div>
         </div>
         </div>
         <div class="col-md-12 mb-3">
             <b-button variant="primary" type="submit" class="float-right">Save</b-button>
-            <button type="button" class="mr-2 btn btn-link btn-sm float-right" @click="closeMe">Cancel</button>
+            <button type="button" class="mr-2 btn btn-hover-shine btn-link btn-sm float-right" @click="closeMe">Cancel</button>
         </div>
     </form>
   </div>
@@ -72,8 +72,8 @@ export default {
                     headers: { 'content-type': 'multipart/form-data' }
                 }
         let formData = new FormData();
-        formData.append('featured_image', this.image); 
-        formData.append('user_id', this.user_id); 
+        formData.append('featured_image', this.image);
+        formData.append('user_id', this.user_id);
         axios
         .post('/profile/update-image', formData, config)
         .then(res=>{

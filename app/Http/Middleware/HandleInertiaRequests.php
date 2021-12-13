@@ -37,6 +37,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        // $fname = explode(' ',$request->user()->name );
         return array_merge(parent::share($request), [
             // Synchronously
             'appName' => config('app.name'),
@@ -45,6 +46,10 @@ class HandleInertiaRequests extends Middleware
             'user' => fn () => $request->user()
                 ? $request->user()->only('id', 'name', 'phone', 'image', 'email','email_verified_at')
                 : null,
+                'fname'=>  fn () => $request->user()
+                ? explode(' ',$request->user()->name )
+                : null,
+                
             'flash' => [
                 'message' => fn () => $request->session()->get('message'),
                 'resent' => fn () => $request->session()->get('message'),

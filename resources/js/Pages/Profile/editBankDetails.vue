@@ -50,7 +50,7 @@
         </div>
 
         <div class="col-md-12 mb-3">
-          <b-button variant="primary" type="submit" class="float-right">Save</b-button>
+          <b-button variant="primary" type="submit" class="float-right btn-hover-shine">Save</b-button>
           <button type="button" class="mr-2 btn btn-link btn-sm float-right" @click="closeMe">Cancel</button>
         </div>
       </div>
@@ -133,11 +133,11 @@ export default {
                     "<b>Account Number:</b> " +
                     response.data.data.account_number +
                     "<br>" +
-                    "<b>Bank Name:</b> " 
+                    "<b>Bank Name:</b> "
                     + bank_details[1],
                 type: "info",
                 showCancelButton: true,
-                confirmButtonText: "Yes Continue", 
+                confirmButtonText: "Yes Continue",
                 cancelButtonText: "No, Exit",
                 cancelButtonColor: "#d92550",
                 showCloseButton: true,
@@ -165,9 +165,9 @@ export default {
             this.loading = false;
             this.$swal("Error",err.response.data.message,"error");
             });
-        
+
       },
-      //get bank details 
+      //get bank details
             getBankDetails() {
                 this.loading = true;
             axios

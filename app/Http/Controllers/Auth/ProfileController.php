@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Course;
+use App\Models\CreditScore;
+use App\Models\ECash;
+use App\Models\Referal;
+use App\Models\Training;
+use App\Models\WithdrawalBank;
 
 class ProfileController extends Controller
 {
@@ -34,7 +40,16 @@ class ProfileController extends Controller
         $id = Auth::id();
         $user = User::where('id',$id)->first(['name','email','phone','email_verified_at','image','lga_id',
                                                 'gender','marital_status','dob','address','religion','id']);
-        return $user;
+
+        $courses = Course::where('user_id',$id)->count();
+        $cash = ECash::where('user_id',$id)->sum('value');
+        $train = Training::where('user_id',$id)->count();
+        $score = CreditScore::where('user_id',$id)->sum('value');
+        $refer = Referal::where('user_id',$id)->count();
+        $withdrawal_account = WithdrawalBank::where('user_id',$id)->count();
+
+        return response()->json(['user'=>$user,'cash'=>$cash,'courses'=>$courses,'train'=>$train,'score'=>$score,'refer'=>$refer,
+                                'withdrawal_account'=>$withdrawal_account]);
     }
 
     //update profile
@@ -44,7 +59,7 @@ class ProfileController extends Controller
         if (!Hash::check(request('password'), $user->password)) {
             return response()->json(['message'=>'incorrect password'], 422);
         }
-        
+
         $user->update($request->validated());
         activity()->log('Updated profile details');
 
@@ -79,9 +94,9 @@ class ProfileController extends Controller
             $update = $user->update([
                 'image'=>$fileNameToStore,
             ]);
-            
+
             activity()->log('Updated profile picture');
-    
+
             return true;
         }
     }
