@@ -34,7 +34,7 @@
                             <strong class="uppercase font-display text-xss font-semibold text-gray-800">INTEREST RATE</strong>
                         </header>
                         <div class="flex flex-col md:flex-row justify-between mt-2 mx-3 mb-3">
-                            <strong class="text-4xl font-display font-bold mb-4 md:mb-0" style="color: rgb(13, 96, 216); font-size:24px"> 10%</strong>
+                            <strong class="text-4xl font-display font-bold mb-4 md:mb-0" style="color: rgb(13, 96, 216); font-size:24px"> 22%</strong>
                             <a class="block disabled:opacity-75 disabled:cursor-not-allowed text-center whitespace-no-wrap rounded-t rounded-br flex flex-col md:flex-row items-center justify-center pt-3 py-2 px-8 font-display text-xs md:text-sm uppercase bg-primary-450 font-bold text-white hover:bg-primary-500" href="">+ Quick Save</a>
                         <p>Per Annum</p>
                         </div>

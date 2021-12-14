@@ -5,7 +5,10 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\GeneralFunctionsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LockSavingsController;
+use App\Http\Controllers\MortgageController;
 use App\Http\Controllers\NormalSavingsController;
+use App\Http\Controllers\RealEstateController;
 use App\Http\Controllers\SavingsController;
 use App\Http\Controllers\Setup\SetupController;
 use Illuminate\Support\Facades\Route;
@@ -72,6 +75,21 @@ use Illuminate\Support\Facades\Route;
 
             Route::prefix('/normal')->name('normal.')->group(function () {
                 Route::get('/', [NormalSavingsController::class, 'index'])->name('all');
+
+            });
+
+            Route::prefix('/lock')->name('lock.')->group(function () {
+                Route::get('/', [LockSavingsController::class, 'index'])->name('all');
+
+            });
+
+            Route::prefix('/real-estate')->name('real-estate.')->group(function () {
+                Route::get('/', [RealEstateController::class, 'index'])->name('all');
+
+            });
+
+            Route::prefix('/mortgage')->name('mortgage.')->group(function () {
+                Route::get('/', [MortgageController::class, 'index'])->name('all');
 
             });
         });

@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card mb-3 bg-warm-flame widget-chart text-white card-border savingtypes shadow-lg">
+                        <div class="card mb-3 bg-warm-flame widget-chart text-white card-border savingtypes shadow-lg" @click="realEstateSavings">
                             <div class="icon-wrapper rounded-circle mb-1 ">
                                 <div class="icon-wrapper-bg bg-white opacity-2 "></div>
                                 <i class="lnr-apartment text-white"></i></div>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card mb-3 bg-ripe-malin widget-chart text-white card-border savingtypes shadow-lg">
+                        <div class="card mb-3 bg-ripe-malin widget-chart text-white card-border savingtypes shadow-lg" @click="mortgageSavings">
                             <div class="icon-wrapper rounded-circle mb-1 ">
                                 <div class="icon-wrapper-bg bg-white opacity-2 "></div>
                                 <i class="lnr-briefcase text-white"></i></div>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card mb-3 bg-mixed-hopes widget-chart text-white card-border savingtypes shadow-lg">
+                        <div class="card mb-3 bg-mixed-hopes widget-chart text-white card-border savingtypes shadow-lg" @click="lockSavings">
                             <div class="icon-wrapper rounded-circle mb-1 ">
                                 <div class="icon-wrapper-bg bg-white opacity-2 "></div>
                                 <i class="lnr-lock text-white"></i></div>
@@ -97,6 +97,18 @@ methods:{
     //go-to normal savings
     normalSavings(){
         Inertia.get('/savings/normal')
+    },
+    //go-to realEstate savings
+    realEstateSavings(){
+        Inertia.get('/savings/real-estate')
+    },
+    //go-to mortgage savings
+    mortgageSavings(){
+        Inertia.get('/savings/mortgage')
+    },
+    //go-to lock savings
+    lockSavings(){
+        Inertia.get('/savings/lock')
     },
 },
 }
