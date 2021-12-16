@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-import Vue from 'vue'
+import Vue from 'vue';
 import './plugins/vuetify';
 import { App, plugin } from '@inertiajs/inertia-vue'
 import PortalVue from 'portal-vue'

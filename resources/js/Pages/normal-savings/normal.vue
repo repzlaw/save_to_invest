@@ -26,75 +26,97 @@
                         </div>
                     </div>
                 </section>
+
+                <section class="border rounded-t rounded-br relative card shadow-md mb-3 savingtypes">
+                    <header class="flex justify-between items-center mb-2 pt-4 px-3 md:px-4">
+                        <strong class="uppercase font-display text-xss font-semibold text-gray-800">Transactions</strong>
+                    </header>
+                    <main>
+                        <div class="">
+                            <div class="mx-4 overflow-x-auto">
+
+                            </div>
+                            <div class="infinite-scroll-component__outerdiv">
+                                <div class="infinite-scroll-component" style="height: auto; overflow: auto;">
+                                    <ul class="mb-4 flex flex-col">
+                                        <li class="mx-4 flex items-start py-4">
+                                            <span class="w-4 h-4 rounded mt-2 flex-shrink-0 bg-red-600"></span>
+                                            <span class="font-body text-gray-800 px-4 flex flex-col flex-1">
+                                                <span class="text-xs">Funds locked away using SafeLock™.</span>
+                                                <span class="text-xs text-gray-600">Tue, 19 Oct 2021 16:17:14 GMT</span></span><span class="font-body text-gray-800 flex flex-col">
+                                                <span class="text-sm">₦100,000.00</span></span></li><li class="mx-4 flex items-start py-4">
+                                                <span class="w-4 h-4 rounded mt-2 flex-shrink-0 bg-green-600"></span>
+                                                <span class="font-body text-gray-800 px-4 flex flex-col flex-1">
+                                                <span class="text-xs">Top up for SafeLock™</span>
+                                                <span class="text-xs text-gray-600">Tue, 19 Oct 2021 16:17:13 GMT</span>
+                                            </span>
+                                        </li>
+                                        <li class="mx-4 flex items-start py-4">
+                                            <span class="w-4 h-4 rounded mt-2 flex-shrink-0 bg-green-600"></span>
+                                            <span class="font-body text-gray-800 px-4 flex flex-col flex-1">
+                                                <span class="text-xs">Monthly Savings Deposit.</span>
+                                                <span class="text-xs text-gray-600">Tue, 19 Oct 2021 16:12:04 GMT</span>
+                                            </span>
+                                            <span class="font-body text-gray-800 flex flex-col">
+                                                <span class="text-sm">₦30,000.00</span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="d-block text-center card-footer">
+                                <button class=" btn-icon btn-hover-shine btn-shadow btn-dashed btn btn-outline-success btn-sm" >View more</button>
+                            </div>
+                        </div>
+                    </main>
+                </section>
             </div>
 
             <div class="col-md-4">
-                <div class="flex flex-shrink-0 items-center rounded-t rounded-br border flex-1 card shadow-md savingtypes">
-                        <header class="flex justify-between items-center pt-4 px-3 md:px-4">
-                            <strong class="uppercase font-display text-xss font-semibold text-gray-800">INTEREST RATE</strong>
-                        </header>
-                        <div class="flex flex-col md:flex-row justify-between mt-2 mx-3 mb-3">
-                            <strong class="text-4xl font-display font-bold mb-4 md:mb-0" style="color: rgb(13, 96, 216); font-size:24px"> 10%</strong>
-                            <a class="block disabled:opacity-75 disabled:cursor-not-allowed text-center whitespace-no-wrap rounded-t rounded-br flex flex-col md:flex-row items-center justify-center pt-3 py-2 px-8 font-display text-xs md:text-sm uppercase bg-primary-450 font-bold text-white hover:bg-primary-500" href="">+ Quick Save</a>
+                <div class="flex flex-shrink-0 items-center rounded-t rounded-br border flex-1 card shadow-md savingtypes mb-3">
+                    <header class="flex justify-between items-center pt-4 px-3 md:px-4">
+                        <strong class="uppercase font-display text-xss font-semibold text-gray-800">ACCOUNT NUMBER</strong>
+                    </header>
+                    <div class="flex flex-col md:flex-row justify-between mt-2 mx-3 mb-3">
+                        <strong class="text-4xl font-display font-bold mb-4 md:mb-0" style="color: rgb(13, 96, 216); font-size:24px"> 1253903732</strong>
+                        <a class="block disabled:opacity-75 disabled:cursor-not-allowed text-center whitespace-no-wrap rounded-t rounded-br flex flex-col md:flex-row items-center justify-center pt-3 py-2 px-8 font-display text-xs md:text-sm uppercase bg-primary-450 font-bold text-white hover:bg-primary-500" href="">+ Quick Save</a>
+                    </div>
+                    <div class="d-block text-center card-footer">
+                        <button class=" btn-icon btn-hover-shine btn-shadow btn-dashed btn btn-outline-info btn-sm" v-clipboard="copyAccountNumber">
+                            <i class="fa fa-clipboard mr-1"/>
+                            <strong>Copy to Clipboard </strong>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-shrink-0 items-center rounded-t rounded-br border flex-1 card shadow-md savingtypes mb-3">
+                    <header class="flex justify-between items-center pt-4 px-3 md:px-4">
+                        <strong class="uppercase font-display text-xss font-semibold text-gray-800">INTEREST RATE</strong>
+                    </header>
+                    <div class="flex flex-col md:flex-row justify-between mt-2 mx-3 mb-3">
+                        <strong class="text-4xl font-display font-bold mb-4 md:mb-0" style="color: rgb(13, 96, 216); font-size:24px"> 10%</strong>
+                        <a class="block disabled:opacity-75 disabled:cursor-not-allowed text-center whitespace-no-wrap rounded-t rounded-br flex flex-col md:flex-row items-center justify-center pt-3 py-2 px-8 font-display text-xs md:text-sm uppercase bg-primary-450 font-bold text-white hover:bg-primary-500" href="">+ Quick Save</a>
                         <p>Per Annum</p>
-                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
-
-        <!-- <div class="col-md-8 mb-5"> -->
-            <section class="mb-8 md:mb-12 border rounded-t rounded-br relative card shadow-md col-md-8 mb-5 savingtypes">
-                <header class="flex justify-between items-center mb-2 pt-4 px-3 md:px-4">
-                    <strong class="uppercase font-display text-xss font-semibold text-gray-800">Transactions</strong>
-                </header>
-                <main>
-                    <div class="">
-                        <div class="mx-4 overflow-x-auto">
-
-                        </div>
-                        <div class="infinite-scroll-component__outerdiv">
-                            <div class="infinite-scroll-component" style="height: auto; overflow: auto;">
-                                <ul class="mb-4 flex flex-col">
-                                    <li class="mx-4 flex items-start py-4">
-                                        <span class="w-4 h-4 rounded mt-2 flex-shrink-0 bg-red-600"></span>
-                                        <span class="font-body text-gray-800 px-4 flex flex-col flex-1">
-                                            <span class="text-xs">Funds locked away using SafeLock™.</span>
-                                            <span class="text-xs text-gray-600">Tue, 19 Oct 2021 16:17:14 GMT</span></span><span class="font-body text-gray-800 flex flex-col">
-                                            <span class="text-sm">₦100,000.00</span></span></li><li class="mx-4 flex items-start py-4">
-                                            <span class="w-4 h-4 rounded mt-2 flex-shrink-0 bg-green-600"></span>
-                                            <span class="font-body text-gray-800 px-4 flex flex-col flex-1">
-                                            <span class="text-xs">Top up for SafeLock™</span>
-                                            <span class="text-xs text-gray-600">Tue, 19 Oct 2021 16:17:13 GMT</span>
-                                        </span>
-                                    </li>
-                                    <li class="mx-4 flex items-start py-4">
-                                        <span class="w-4 h-4 rounded mt-2 flex-shrink-0 bg-green-600"></span>
-                                        <span class="font-body text-gray-800 px-4 flex flex-col flex-1">
-                                            <span class="text-xs">Monthly Savings Deposit.</span>
-                                            <span class="text-xs text-gray-600">Tue, 19 Oct 2021 16:12:04 GMT</span>
-                                        </span>
-                                        <span class="font-body text-gray-800 flex flex-col">
-                                            <span class="text-sm">₦30,000.00</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="d-block text-center card-footer">
-                            <button class=" btn-icon btn-hover-shine btn-shadow btn-dashed btn btn-outline-success btn-sm" >View more</button>
-                        </div>
-                    </div>
-                </main>
-            </section>
-        <!-- </div> -->
-
     </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import VueClipboards from 'vue-clipboards';
+Vue.use(VueClipboards);
+
 export default {
 
+data(){
+    return{
+        copyAccountNumber: '1234462388',
+    }
+}
 }
 </script>
 
